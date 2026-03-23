@@ -1,0 +1,4 @@
+web:
+  command: node dist/main.js
+  envVariables:
+    NODE_ENV: production
