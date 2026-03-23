@@ -2,7 +2,7 @@ import { View, Text, ScrollView, Image } from '@tarojs/components'
 import { useState } from 'react'
 import Taro, { useLoad, useDidShow } from '@tarojs/taro'
 import { Network } from '@/network'
-import { Plus, Edit, Trash2, Settings } from 'lucide-react-taro'
+import { Plus, Pencil, Trash2, Settings } from 'lucide-react-taro'
 
 interface Category {
   id: string
@@ -244,7 +244,7 @@ const AdminPage = () => {
                           className="px-3 py-1.5 bg-blue-500 rounded-lg flex items-center"
                           onClick={() => handleEditDish(dish)}
                         >
-                          <Edit size={14} color="#FFFFFF" />
+                          <Pencil size={14} color="#FFFFFF" />
                           <Text className="text-white text-xs ml-1">编辑</Text>
                         </View>
                         <View
