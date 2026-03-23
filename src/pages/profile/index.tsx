@@ -1,6 +1,5 @@
 import { View, Text } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
-import Taro from '@tarojs/taro'
+import Taro, { useLoad } from '@tarojs/taro'
 import { User, Settings, Phone, Info, Shield } from 'lucide-react-taro'
 
 const ProfilePage = () => {

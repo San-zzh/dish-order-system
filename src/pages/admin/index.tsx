@@ -109,11 +109,12 @@ const AdminPage = () => {
   }
 
   const handleAddCategory = () => {
-    Taro.showModal({
+    // 微信小程序支持 editable 参数，但 Taro 类型定义未包含
+    ;(Taro.showModal as any)({
       title: '添加分类',
       editable: true,
       placeholderText: '请输入分类名称',
-      success: async (res) => {
+      success: async (res: any) => {
         if (res.confirm && res.content) {
           try {
             const result = await Network.request({
@@ -220,7 +221,8 @@ const AdminPage = () => {
                         </Text>
                         <Text className={`text-xs px-2 py-0.5 rounded ${
                           dish.is_available ? 'bg-green-100 text-green-600' : 'bg-stone-200 text-stone-500'
-                        }`}>
+                        }`}
+                        >
                           {dish.is_available ? '上架' : '下架'}
                         </Text>
                       </View>

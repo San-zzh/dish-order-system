@@ -10,7 +10,6 @@ interface Category {
 
 const DishEditPage = () => {
   const [categories, setCategories] = useState<Category[]>([])
-  const [loading, setLoading] = useState(false)
   const [dishId, setDishId] = useState<string>('')
   
   const [formData, setFormData] = useState({
@@ -51,7 +50,6 @@ const DishEditPage = () => {
 
   const fetchDish = async (id: string) => {
     try {
-      setLoading(true)
       const res = await Network.request<{ code: number; msg: string; data: any }>({
         url: `/api/dishes/${id}`,
         method: 'GET'
@@ -74,8 +72,6 @@ const DishEditPage = () => {
     } catch (error) {
       console.error('获取菜品详情失败:', error)
       Taro.showToast({ title: '获取菜品详情失败', icon: 'none' })
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -94,8 +90,6 @@ const DishEditPage = () => {
     }
 
     try {
-      setLoading(true)
-      
       const data = {
         name: formData.name,
         categoryId: formData.categoryId,
@@ -140,8 +134,6 @@ const DishEditPage = () => {
     } catch (error) {
       console.error('保存菜品失败:', error)
       Taro.showToast({ title: '保存失败', icon: 'none' })
-    } finally {
-      setLoading(false)
     }
   }
 
