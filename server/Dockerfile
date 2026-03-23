@@ -1,22 +1,22 @@
-# 微信云托管 Dockerfile - 优化版
-FROM node:18-alpine
+# 微信云托管 Dockerfile - 极简版
+FROM node:18-slim
 
 WORKDIR /app
 
-# 安装编译原生模块所需的工具
-RUN apk add --no-cache python3 make g++
+# 安装必要的编译工具
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 # 复制 package.json
 COPY package*.json ./
 
-# 安装依赖
-RUN npm install -g pnpm && pnpm install
+# 使用 npm 安装依赖（更稳定）
+RUN npm install
 
 # 复制源代码
 COPY . .
 
-# 构建 NestJS 项目
-RUN pnpm build
+# 构建项目
+RUN npm run build
 
 # 暴露端口 3000
 EXPOSE 3000
