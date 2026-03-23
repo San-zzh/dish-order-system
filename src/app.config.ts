@@ -3,7 +3,9 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/cart/index',
     'pages/orders/index',
-    'pages/profile/index'
+    'pages/profile/index',
+    'pages/admin/index',
+    'pages/admin/dish-edit/index'
   ],
   window: {
     backgroundTextStyle: 'light',
