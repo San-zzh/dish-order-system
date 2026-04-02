@@ -1,14 +1,10 @@
 #!/bin/bash
 set -Eeuo pipefail
 
-start_service() {
-    cd "${COZE_WORKSPACE_PATH}/server/dist"
+cd "${COZE_WORKSPACE_PATH}"
 
-    local port="${DEPLOY_RUN_PORT:-3000}"
-    echo "Starting Static File Server on port ${port} for deploy..."
+local port="${DEPLOY_RUN_PORT:-3000}"
+echo "Starting Static File Server on port ${port} for WeApp preview..."
 
-    node ./main.js -p "${port}"
-}
-
-echo "Starting HTTP service for deploy..."
-start_service
+# 使用 npx serve 提供 dist 目录
+npx serve -s dist -l "${port}"

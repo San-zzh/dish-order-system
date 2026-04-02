@@ -4,16 +4,21 @@ set -Eeuo pipefail
 cd "${COZE_WORKSPACE_PATH}"
 if [ -f "./.cozeproj/scripts/init_env.sh" ]; then
     echo "⚙️ Initializing environment..."
-    # 使用 bash 执行，确保即使没有 x 权限也能跑
     bash ./.cozeproj/scripts/init_env.sh
 else
     echo "⚠️ Warning: init_env.sh not found, skipping environment init."
 fi
+
+# 动态注入环境变量
+if [ -n "${COZE_PROJECT_DOMAIN_DEFAULT:-}" ]; then
+    export PROJECT_DOMAIN="$COZE_PROJECT_DOMAIN_DEFAULT"
+    echo "✅ 环境变量已注入: PROJECT_DOMAIN=$PROJECT_DOMAIN"
+fi
+
 echo "Installing dependencies..."
-# 安装所有依赖（包含 Taro 核心和 React）
 pnpm install
 
-echo "Building the Taro project..."
-pnpm build
+echo "Building the Taro WeApp project..."
+pnpm build:weapp
 
 echo "Build completed successfully! Assets are in /dist"
