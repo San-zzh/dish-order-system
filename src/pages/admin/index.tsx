@@ -123,6 +123,10 @@ const AdminPage = () => {
               data: { name: res.content }
             })
 
+            console.log('添加分类结果:', result)
+            console.log('result.data:', result.data)
+            console.log('result.data?.code:', result.data?.code)
+
             if (result.data?.code === 200) {
               Taro.showToast({ title: '添加成功', icon: 'success' })
               fetchData()
@@ -130,6 +134,7 @@ const AdminPage = () => {
               Taro.showToast({ title: result.data?.msg || '添加失败', icon: 'none' })
             }
           } catch (error) {
+            console.error('添加分类失败:', error)
             Taro.showToast({ title: '添加失败', icon: 'none' })
           }
         }
