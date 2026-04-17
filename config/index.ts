@@ -91,7 +91,7 @@ export default defineConfig<'vite'>(async (merge, _env) => {
       PROJECT_DOMAIN: JSON.stringify(
         process.env.PROJECT_DOMAIN ||
           process.env.COZE_PROJECT_DOMAIN_DEFAULT ||
-          '',
+          'https://dish-api-237436-9-1414911774.sh.run.tcloudbase.com',
       ),
       TARO_ENV: JSON.stringify(process.env.TARO_ENV),
     },
